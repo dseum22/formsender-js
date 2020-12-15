@@ -249,7 +249,7 @@
             // set copyright year
             $('#year').text(new Date().getFullYear());
         });
-        var form1 = new Formsender('bootstrapForm', '/https://script.google.com/macros/s/AKfycbymMNEcxlPZZNfJb-xgvTBZG4qGS58DsEyAUrTw1g/exec', true);
+        var form1 = new Formsender('bootstrapForm', 'https://script.google.com/macros/s/AKfycbymMNEcxlPZZNfJb-xgvTBZG4qGS58DsEyAUrTw1g/exec', true);
         form1.custom('load', '<div class="spinner-border" role="status"> <span class="visually-hidden">Loading...</span> </div>');
         var form2 = new Formsender('basicForm', 'https://script.google.com/macros/s/AKfycbymMNEcxlPZZNfJb-xgvTBZG4qGS58DsEyAUrTw1g/exec', true);
         form2.custom('load', 'My Custom Load!');
