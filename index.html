@@ -249,9 +249,9 @@
             // set copyright year
             $('#year').text(new Date().getFullYear());
         });
-        var form1 = new Formsender('responseform1', '//https://script.google.com/macros/s/AKfycbwkumWHfN4lYKrulteTtmqaSd8JcBvzrLpcfb_S7I0Y2fbd7Kgt/exec', true);
+        var form1 = new Formsender('bootstrapForm', '/https://script.google.com/macros/s/AKfycbymMNEcxlPZZNfJb-xgvTBZG4qGS58DsEyAUrTw1g/exec', true);
         form1.custom('load', '<div class="spinner-border" role="status"> <span class="visually-hidden">Loading...</span> </div>');
-        var form2 = new Formsender('responseform2', '//https://script.google.com/macros/s/AKfycbwkumWHfN4lYKrulteTtmqaSd8JcBvzrLpcfb_S7I0Y2fbd7Kgt/exec', true);
+        var form2 = new Formsender('basicForm', 'https://script.google.com/macros/s/AKfycbymMNEcxlPZZNfJb-xgvTBZG4qGS58DsEyAUrTw1g/exec', true);
         form2.custom('load', 'My Custom Load!');
     </script>
 </body>
