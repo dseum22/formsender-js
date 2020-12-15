@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Dennis Eum">
+    <meta name="description"
+        content="This website display formsender.js, a lightweight, simple js library to send form responses to your email or spreadsheet with Google Apps script.">
+    <meta name="keywords"
+        content="dennis eum, dennis, eum, denniseum.com, dennis eum website, dennis eum personal website, dennis eum minnesota, dennis eum us, dennis eum home page">
+
+    <!-- icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+
+    <!-- extra css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/default.css"
+        integrity="sha256-mNltWbafG11uxOqo4sLGiAwqhJJT7wgmnigR64D7PYo=" crossorigin="anonymous">
+
+    <!-- main css -->
+    <link rel="stylesheet" href="main.css">
+
+    <!-- site title -->
+    <title>formsender.js</title>
+</head>
+
+<body class="bg-light">
+    <!-- container -->
+    <div class="container-sm mt-3">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1 class="card-title text-light bg-dark dark-header shadow">formsender.js</h1>
+                <div class="container-sm">
+                    <!-- bootstrap form demo -->
+                    <h1>bootstrap form</h1>
+                    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal"
+                        data-bs-target="#bootstrapFormModal">
+                        Bootstrap Form Demo
+                    </button>
+                    <div class="modal fade" id="bootstrapFormModal" tabindex="-1"
+                        aria-labelledby="bootstrapFormModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="bootstrapFormModalLabel">Bootstrap Form Demo</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="bootstrapForm" novalidate>
+                                        <fieldset class="row g-3">
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="firstname"
+                                                    placeholder="First name" required>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="lastname"
+                                                    placeholder="Last name" required>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="input-group has-validation">
+                                                    <input type="email" class="form-control" name="email"
+                                                        placeholder="Email" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md">
+                                                <textarea class="form-control" name="message" rows="3"
+                                                    placeholder="Message" required></textarea>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label data-formsender="label"></label>
+                                                <input type="text" class="form-control" name="verifycode"
+                                                    placeholder="Codfe" data-formsender="input" required>
+                                                <div class="invalid-feedback">
+                                                    Verification was unsuccessful. Please check your math again.
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-outline-dark">send
+                                                    message</button>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-pills my-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="pills-html-tab" data-bs-toggle="pill" href="#pills-html"
+                                role="tab" aria-controls="pills-html" aria-selected="true">HTML</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="pills-css-tab" data-bs-toggle="pill" href="#pills-css" role="tab"
+                                aria-controls="pills-css" aria-selected="false">CSS</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-5 mb-3" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-html" role="tabpanel"
+                            aria-labelledby="pills-html-tab">
+                            <pre><code class="html">
+    &lt;form id=&quot;bootstrapForm&quot; novalidate&gt;
+        &lt;fieldset class=&quot;row g-3&quot;&gt;
+            &lt;div class=&quot;col-md-4&quot;&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;firstname&quot; placeholder=&quot;First name&quot; required&gt; &lt;/div&gt;
+            &lt;div class=&quot;col-md-4&quot;&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;lastname&quot; placeholder=&quot;Last name&quot; required&gt; &lt;/div&gt;
+            &lt;div class=&quot;col-md-4&quot;&gt;
+                &lt;div class=&quot;input-group has-validation&quot;&gt;
+                    &lt;input type=&quot;email&quot; class=&quot;form-control&quot; name=&quot;email&quot; placeholder=&quot;Email&quot; required&gt; &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-md&quot;&gt;
+                &lt;textarea class=&quot;form-control&quot; name=&quot;message&quot; rows=&quot;3&quot; placeholder=&quot;Message&quot; required&gt;&lt;/textarea&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-md-12&quot;&gt;
+                &lt;label data-formsender=&quot;label&quot;&gt;&lt;/label&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;verifycode&quot; placeholder=&quot;Codfe&quot; data-formsender=&quot;input&quot; required&gt;
+                &lt;div class=&quot;invalid-feedback&quot;&gt; Verification was unsuccessful. Please check your math again. &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-12&quot;&gt;
+                &lt;button type=&quot;submit&quot; class=&quot;btn btn-outline-dark&quot;&gt;send message&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/fieldset&gt;
+    &lt;/form&gt;
+                            </code></pre>
+                        </div>
+                        <div class="tab-pane fade" id="pills-css" role="tabpanel" aria-labelledby="pills-css-tab">
+                            <pre><code class="css">
+    /* no extra css needed; all styling from bootstrap */
+                            </code></pre>
+                        </div>
+                    </div>
+                    <!-- basic form demo -->
+                    <h1>basic form (no bootstrap)</h1>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#basicFormModal">
+                        Basic Form Demo
+                    </button>
+                    <div class="modal fade" id="basicFormModal" tabindex="-1" aria-labelledby="basicFormModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="basicFormModalLabel">Basic Form Demo</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="non-bootstrap" id="basicForm" novalidate>
+                                        <fieldset>
+                                            <input type="text" name="firstname" placeholder="First name" required>
+                                            <input type="text" name="lastname" placeholder="Last name" required>
+                                            <input type="email" name="email" placeholder="Email" required>
+                                            <textarea name="message" rows="3" placeholder="Message" required></textarea>
+                                            <label data-formsender="label"></label>
+                                            <input type="text" name="verifycode" placeholder="Code"
+                                                data-formsender="input" required>
+                                            <button type="submit">send
+                                                message</button>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-pills my-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="pills-html2-tab" data-bs-toggle="pill" href="#pills-html2"
+                                role="tab" aria-controls="pills-html2" aria-selected="true">HTML</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="pills-css2-tab" data-bs-toggle="pill" href="#pills-css2" role="tab"
+                                aria-controls="pills-css2" aria-selected="false">CSS</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-5 mb-3" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-html2" role="tabpanel"
+                            aria-labelledby="pills-html2-tab">
+                            <pre><code class="html">
+    &lt;form class=&quot;non-bootstrap&quot; id=&quot;basicForm&quot; novalidate&gt;
+        &lt;fieldset&gt;
+            &lt;input type=&quot;text&quot; name=&quot;firstname&quot; placeholder=&quot;First name&quot; required&gt;
+            &lt;input type=&quot;text&quot; name=&quot;lastname&quot; placeholder=&quot;Last name&quot; required&gt;
+            &lt;input type=&quot;email&quot; name=&quot;email&quot; placeholder=&quot;Email&quot; required&gt;
+            &lt;textarea name=&quot;message&quot; rows=&quot;3&quot; placeholder=&quot;Message&quot; required&gt;&lt;/textarea&gt;
+            &lt;label data-formsender=&quot;label&quot;&gt;&lt;/label&gt;
+            &lt;input type=&quot;text&quot; name=&quot;verifycode&quot; placeholder=&quot;Code&quot; data-formsender=&quot;input&quot; required&gt;
+            &lt;button type=&quot;submit&quot;&gt;send message&lt;/button&gt;
+        &lt;/fieldset&gt;
+    &lt;/form&gt;
+                            </code></pre>
+                        </div>
+                        <div class="tab-pane fade" id="pills-css2" role="tabpanel" aria-labelledby="pills-css2-tab">
+                            <pre><code class="css">
+    /* basic non-bootstrap validation based from MDN Form_validation documentation */
+    .non-bootstrap fieldset * {
+        margin-top:5px;
+        margin-bottom:5px;
+        display:flex;
+    }
+    .non-bootstrap fieldset *:invalid {
+        border: 2px dashed red;
+    }
+
+    .non-bootstrap fieldset *:invalid:required {
+        background-image: linear-gradient(to right, pink, pink);
+    }
+
+    .non-bootstrap fieldset *:valid {
+        border: 2px solid green;
+    }
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="text-center mt-3 pb-3">dennis eum &copy; <span id="year"></span></p>
+    </div>
+
+    <!-- scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"
+        integrity="sha256-yeMmUlHbk3Q2fuSCxKTJOAcO+KSYnzaHv/phSqz4NLo=" crossorigin="anonymous"></script>
+
+    <!-- formsender.js -->
+    <script src="formsender.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        feather.replace();
+        $(document).ready(function () {
+            // set copyright year
+            $('#year').text(new Date().getFullYear());
+        });
+        var form1 = new Formsender('responseform1', '//https://script.google.com/macros/s/AKfycbwkumWHfN4lYKrulteTtmqaSd8JcBvzrLpcfb_S7I0Y2fbd7Kgt/exec', true);
+        form1.custom('load', '<div class="spinner-border" role="status"> <span class="visually-hidden">Loading...</span> </div>');
+        var form2 = new Formsender('responseform2', '//https://script.google.com/macros/s/AKfycbwkumWHfN4lYKrulteTtmqaSd8JcBvzrLpcfb_S7I0Y2fbd7Kgt/exec', true);
+        form2.custom('load', 'My Custom Load!');
+    </script>
+</body>
+
+</html>

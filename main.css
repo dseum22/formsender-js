@@ -1,0 +1,35 @@
+html, body {
+    height: 100%;
+}
+
+.card {
+    border-radius: 10px;
+    border: none;
+}
+
+.dark-header {
+    padding: 6px 12px;
+    border-radius: 10px;
+}
+
+pre {
+    height: 250px;
+}
+/* basic non-bootstrap validation based from MDN Form_validation documentation */
+.non-bootstrap fieldset * {
+    margin-top:5px;
+    margin-bottom:5px;
+    display:flex;
+}
+.non-bootstrap fieldset *:invalid {
+    border: 2px dashed red;
+}
+
+.non-bootstrap fieldset *:invalid:required {
+    background-image: linear-gradient(to right, pink, pink);
+}
+
+.non-bootstrap fieldset *:valid {
+    border: 2px solid green;
+}
+
