@@ -1,7 +1,7 @@
 # formsender.js
 
 ## introduction
-This is a lightweight JS library that handles your HTML form responses for free, using Google Apps Scripts.
+This is a lightweight JS library that handles your static HTML form responses for free, using Google Apps Scripts.
 <strong>This should not be used for websites expecting generally more than 30 simulataneous responses or 20,000 responses a day due to Google Apps Scripts' limitations.</strong> For small or personal websites, however, formsender.js is a perfect solution!
 
 ## setup
