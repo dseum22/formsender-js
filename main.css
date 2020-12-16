@@ -12,15 +12,22 @@ html, body {
     border-radius: 10px;
 }
 
+.social {
+    border-radius: 10px;
+}
+
 pre {
-    height: 250px;
+    max-height: 250px;
 }
+
 /* basic non-bootstrap validation based from MDN Form_validation documentation */
+
 .non-bootstrap fieldset * {
-    margin-top:5px;
-    margin-bottom:5px;
-    display:flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: flex;
 }
+
 .non-bootstrap fieldset *:invalid {
     border: 2px dashed red;
 }
@@ -32,4 +39,3 @@ pre {
 .non-bootstrap fieldset *:valid {
     border: 2px solid green;
 }
-

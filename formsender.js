@@ -29,7 +29,7 @@ function Formsender(formID, url, bootstrap = false) {
         let elements = self.element.elements;
         for (i = 0; i < elements.length; i++) {
             let item = elements[i];
-            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(item.nodeName) && item.type != 'submit' && Object.keys(elements)[elements.length + i - 1] != 'verifycode') {
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(item.nodeName) && item.type != 'submit') {
                 output[Object.keys(elements)[elements.length + i - 1]] = item.value;
             }
         }

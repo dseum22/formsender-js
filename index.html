@@ -33,10 +33,51 @@
     <div class="container-sm mt-3">
         <div class="card shadow">
             <div class="card-body">
-                <h1 class="card-title text-light bg-dark dark-header shadow">formsender.js</h1>
+                <div class="card-title text-light bg-dark dark-header shadow" style="width:100%;">
+                    <h1 class="d-inline-block" style="margin-bottom:0;">formsender.js</h1>
+                    <div class="d-inline-block float-end align-middle" style="height:100%;"><a
+                            class="btn btn-outline-light social me-2" href="https://github.com/dseum22/formsender-js"
+                            target="_blank"><i data-feather="github"></i></a><a class="btn btn-outline-light social"
+                            href="https://denniseum.com" target="_blank"><i data-feather="user"></i></a></div>
+                </div>
                 <div class="container-sm">
+                    <h1>documentation <i data-feather="info"></i></h1>
+                    <h3>-initialize object</h3>
+                    <p>put Formsender object on <b>form#formID</b>, which will post to Google Apps Script webapp exec
+                        <b>url</b>.
+                        <b>bootstrap</b> is an optional boolean (default=false): if true, object uses bootstrap's custom
+                        validation class.
+                    </p>
+                    <pre><code class="js">
+    var form1 = new Formsender(formID, url, bootstrap);
+                    </code></pre>
+                    <h3>-tell Formsender to verify for bots</h3>
+                    <p>place html in your form with "data-formsender='label'" for the label where the verification
+                        question should show up and "data-formsender='code'" for the input where user should input the
+                        verification code.</p>
+                    <pre><code class="html">
+    &lt;label data-formsender=&quot;label&quot;&gt;&lt;/label&gt;
+    &lt;input type=&quot;text&quot; placeholder=&quot;Code&quot; data-formsender=&quot;input&quot; required&gt;
+                    </code></pre>
+
+                    <h3>-add custom load or reset code</h3>
+                    <p>you can add custom html to run when the form is being sent for styling the form or js to run when
+                        the form resets (clears fields, etc) for specific changes.
+                    </p>
+                    <pre><code class="js">
+    // custom load html spinner from bootstrap
+    form1.add('load', '&lt;div class=&quot;spinner-border&quot; role=&quot;status&quot;&gt; &lt;span class=&quot;visually-hidden&quot;&gt;Loading...&lt;/span&gt; &lt;/div&gt;');
+                    </code></pre>
+                    <pre><code class="js">
+    // custom reset js
+    form1.add('reset', function() {
+        alert('form submitted'); // the form is only reset when it was successfully submitted
+    });
+                    </code></pre>
+                    <h1>examples <i data-feather="code"></i></h1>
+                    <p>you can actually use these example forms to send me a message!</p>
                     <!-- bootstrap form demo -->
-                    <h1>bootstrap form</h1>
+                    <h3>-bootstrap form</h3>
                     <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal"
                         data-bs-target="#bootstrapFormModal">
                         Bootstrap Form Demo
@@ -73,8 +114,8 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <label data-formsender="label"></label>
-                                                <input type="text" class="form-control" name="verifycode"
-                                                    placeholder="Codfe" data-formsender="input" required>
+                                                <input type="text" class="form-control" placeholder="Code"
+                                                    data-formsender="input" required>
                                                 <div class="invalid-feedback">
                                                     Verification was unsuccessful. Please check your math again.
                                                 </div>
@@ -122,7 +163,7 @@
             &lt;/div&gt;
             &lt;div class=&quot;col-md-12&quot;&gt;
                 &lt;label data-formsender=&quot;label&quot;&gt;&lt;/label&gt;
-                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;verifycode&quot; placeholder=&quot;Codfe&quot; data-formsender=&quot;input&quot; required&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Code&quot; data-formsender=&quot;input&quot; required&gt;
                 &lt;div class=&quot;invalid-feedback&quot;&gt; Verification was unsuccessful. Please check your math again. &lt;/div&gt;
             &lt;/div&gt;
             &lt;div class=&quot;col-12&quot;&gt;
@@ -139,7 +180,7 @@
                         </div>
                     </div>
                     <!-- basic form demo -->
-                    <h1>basic form (no bootstrap)</h1>
+                    <h3>-basic form (no bootstrap)</h3>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#basicFormModal">
                         Basic Form Demo
@@ -161,8 +202,7 @@
                                             <input type="email" name="email" placeholder="Email" required>
                                             <textarea name="message" rows="3" placeholder="Message" required></textarea>
                                             <label data-formsender="label"></label>
-                                            <input type="text" name="verifycode" placeholder="Code"
-                                                data-formsender="input" required>
+                                            <input type="text" placeholder="Code" data-formsender="input" required>
                                             <button type="submit">send
                                                 message</button>
                                         </fieldset>
@@ -196,7 +236,7 @@
             &lt;input type=&quot;email&quot; name=&quot;email&quot; placeholder=&quot;Email&quot; required&gt;
             &lt;textarea name=&quot;message&quot; rows=&quot;3&quot; placeholder=&quot;Message&quot; required&gt;&lt;/textarea&gt;
             &lt;label data-formsender=&quot;label&quot;&gt;&lt;/label&gt;
-            &lt;input type=&quot;text&quot; name=&quot;verifycode&quot; placeholder=&quot;Code&quot; data-formsender=&quot;input&quot; required&gt;
+            &lt;input type=&quot;text&quot; placeholder=&quot;Code&quot; data-formsender=&quot;input&quot; required&gt;
             &lt;button type=&quot;submit&quot;&gt;send message&lt;/button&gt;
         &lt;/fieldset&gt;
     &lt;/form&gt;
@@ -241,7 +281,8 @@
         integrity="sha256-yeMmUlHbk3Q2fuSCxKTJOAcO+KSYnzaHv/phSqz4NLo=" crossorigin="anonymous"></script>
 
     <!-- formsender.js -->
-    <script src="formsender.js"></script>
+    <!-- <script src="formsender.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/formsender-js@1.0.3/formsender.min.js"></script>
     <script>
         hljs.initHighlightingOnLoad();
         feather.replace();
