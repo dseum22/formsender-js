@@ -18,6 +18,11 @@ html, body {
 
 pre {
     max-height: 250px;
+    margin-bottom: 0;
+}
+
+h3 {
+    margin-top: 10px;
 }
 
 /* basic non-bootstrap validation based from MDN Form_validation documentation */

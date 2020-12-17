@@ -26,13 +26,10 @@ function Formsender(formID, url, bootstrap = false) {
     }
     self.getData = function () {
         let output = {};
-        let elements = self.element.elements;
-        for (i = 0; i < elements.length; i++) {
-            let item = elements[i];
-            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(item.nodeName) && item.type != 'submit') {
-                output[Object.keys(elements)[elements.length + i - 1]] = item.value;
-            }
-        }
+        let data = new FormData(self.element);
+        data.forEach(function (value, key) {
+            output[key] = value;
+        });
         return output;
     }
     self.disable = function () {
@@ -43,26 +40,37 @@ function Formsender(formID, url, bootstrap = false) {
     }
     self.submitHTML = self.element.querySelector('[type="submit"]').innerHTML;
     self.reset = function () {
-        self.enable();
+        self.element.reset();
+        self.reloadVerify();
         if (self.bootstrap) {
             self.element.classList.remove('was-validated');
         }
-        self.reloadVerify();
+        self.enable();
         self.element.querySelector('[type="submit"]').innerHTML = self.submitHTML;
-        self.customReset();
+        self.customcode['reset']();
+    }
+    self.error = function (input = 'error: form was not submitted') {
+        if (self.customcode['error']) {
+            self.element.append(self.customcode);
+        } else {
+            alert(input);
+        }
+        self.enable();
+        self.element.querySelector('[type="submit"]').innerHTML = self.submitHTML;
     }
     self.sendForm = function () {
+        let data = self.getData();
         self.disable();
         let submit = self.element.querySelector('[type="submit"]');
         // button load html
         if (submit.nodeName == 'BUTTON') {
-            if (self.customLoad != 'undefined') {
-                submit.innerHTML = self.customLoad;
+            if (self.customcode['load']) {
+                submit.innerHTML = self.customcode['load'];
             } else {
                 submit.innerHTML = 'Sending...';
             }
         } else {
-            if (self.customLoad != 'undefined') {
+            if (self.customcode['load']) {
                 console.log('custom loading is only compatible with button[type="submit"]');
             } else {
                 submit.innerHTML = 'Sending...';
@@ -71,24 +79,17 @@ function Formsender(formID, url, bootstrap = false) {
         fetch(url, {
             method: 'POST',
             mode: 'no-cors',
-            body: JSON.stringify(self.getData())
+            body: JSON.stringify(data)
         }).then(response => {
             self.reset();
         }).catch(error => {
-            console.log(error);
-            self.enable();
-            self.element.querySelector('[type="submit"]').innerHTML = self.submitHTML;
+            self.error(error);
         });
     }
     // custom additions
-    self.customLoad; // HTML
-    self.customReset; // JS
+    self.customcode = {};
     self.custom = function (type, input) {
-        if (type == 'load') {
-            self.customLoad = input;
-        } else if (type == 'reset') {
-            self.customReset = input;
-        }
+        self.customcode[type] = input;
     }
     // main
     if (self.element.contains(self.element.querySelector('[data-formsender="label"]'))) {

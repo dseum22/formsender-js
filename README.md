@@ -7,12 +7,12 @@ This is a lightweight JS library that handles your static HTML form responses fo
 ## setup
 <strong>1. Install formsender.js</strong>
 <br>
-You can either <a href="https://cdn.jsdelivr.net/npm/formsender-js@1.0.1/formsender.min.js">download</a> formsender.js or <a href="https://www.jsdelivr.com/package/npm/formsender-js">use jsDelivr</a>.
+You can either <a href="https://raw.githubusercontent.com/dseum22/formsender-js/main/formsender.js">download</a> formsender.js or <a href="https://www.jsdelivr.com/package/npm/formsender-js">use jsDelivr</a>.
 ```html
 <!-- downloaded -->
 <script src="formsender.js"></script>
-<!-- jsDelivr -->
-<script src="https://cdn.jsdelivr.net/npm/formsender-js@1.0.1/formsender.min.js"></script>
+<!-- jsDelivr (note version number below could be old, always check jsDelivr link above for most recent) -->
+<script src="https://cdn.jsdelivr.net/npm/formsender-js@1.0.4/formsender.min.js"></script>
 ```
 <strong>2. Google Apps Script</strong>
 <br>
@@ -26,7 +26,7 @@ function doPost(e) {
   GmailApp.sendEmail(receiver, 'New Msg from formsender.js', formattedbody);
 }
 ```
-*Note: JSON keys are set automatically to the "name" attribute of the HTML form's inputs.*
+*Note: JSON keys are set automatically to the "name" attribute of the HTML form's inputs so you can set your HTML inputs to whatever name*
 <br>
 If you have more experience with Google Apps Script, you can further customize by using spreadsheets as a response database instead of receiving emails (I will personally add example code soon so that Google spreadsheet can be used).
 <br>

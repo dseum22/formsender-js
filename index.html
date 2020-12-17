@@ -58,22 +58,25 @@
     &lt;label data-formsender=&quot;label&quot;&gt;&lt;/label&gt;
     &lt;input type=&quot;text&quot; placeholder=&quot;Code&quot; data-formsender=&quot;input&quot; required&gt;
                     </code></pre>
-
-                    <h3>-add custom load or reset code</h3>
+                    <h3>-add custom load, reset, or error code</h3>
                     <p>you can add custom html to run when the form is being sent for styling the form or js to run when
-                        the form resets (clears fields, etc) for specific changes.
+                        the form resets (clears fields, etc) for specific changes. custom error js can be added as well.
                     </p>
                     <pre><code class="js">
     // custom load html spinner from bootstrap
-    form1.add('load', '&lt;div class=&quot;spinner-border&quot; role=&quot;status&quot;&gt; &lt;span class=&quot;visually-hidden&quot;&gt;Loading...&lt;/span&gt; &lt;/div&gt;');
-                    </code></pre>
-                    <pre><code class="js">
+    form1.custom('load', '&lt;div class=&quot;spinner-border&quot; role=&quot;status&quot;&gt; &lt;span class=&quot;visually-hidden&quot;&gt;Loading...&lt;/span&gt; &lt;/div&gt;');
+
     // custom reset js
-    form1.add('reset', function() {
+    form1.custom('reset', function() {
         alert('form submitted'); // the form is only reset when it was successfully submitted
     });
+
+    // custom error js
+    form1.custom('error', function() {
+        alert('there was an error');
+    });
                     </code></pre>
-                    <h1>examples <i data-feather="code"></i></h1>
+                    <h1 class="mt-2">examples <i data-feather="code"></i></h1>
                     <p>you can actually use these example forms to send me a message!</p>
                     <!-- bootstrap form demo -->
                     <h3>-bootstrap form</h3>
@@ -280,8 +283,8 @@
         integrity="sha256-yeMmUlHbk3Q2fuSCxKTJOAcO+KSYnzaHv/phSqz4NLo=" crossorigin="anonymous"></script>
 
     <!-- formsender.js -->
-    <!-- <script src="formsender.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/formsender-js@1.0.3/formsender.min.js"></script>
+    <script src="formsender.js"></script>
+    <!-- you can also use jsDelivr CDN -->
     <script>
         hljs.initHighlightingOnLoad();
         feather.replace();
@@ -291,6 +294,10 @@
         });
         var form1 = new Formsender('bootstrapForm', 'https://script.google.com/macros/s/AKfycbymMNEcxlPZZNfJb-xgvTBZG4qGS58DsEyAUrTw1g/exec', true);
         form1.custom('load', '<div class="spinner-border" role="status"> <span class="visually-hidden">Loading...</span> </div>');
+        /*
+        form1.custom('reset',function() {
+            alert('hello');
+        }); */
         var form2 = new Formsender('basicForm', 'https://script.google.com/macros/s/AKfycbymMNEcxlPZZNfJb-xgvTBZG4qGS58DsEyAUrTw1g/exec', true);
         form2.custom('load', 'My Custom Load!');
     </script>
